@@ -4,24 +4,19 @@ export const Todo=()=>{
   const[newTask,setNewTask]=useState('')
   const[tasks,setTasks]=useState([])
   const[editTaskId,SetEditTaskId]=useState('')
- const[editedTask,setEditedTask]=useState('')
-const[error ,setError]=useState({
+  const[editedTask,setEditedTask]=useState('')
+  const[error ,setError]=useState({
   errorTask:"",
   errorOnEdit:""
-})
-//  let todoList='';
-//  const existTodo=[];
+}) // for display the error
 
-  
+
  const handleInput=(event)=>{
   // get input value from the user 
-  
-  
   setNewTask(event.target.value)
   
-
  }
-//  console.log(errorValue)
+
 const addTasktoTasks=()=>{
   
   if(newTask){
@@ -31,13 +26,12 @@ const addTasktoTasks=()=>{
     let todoList=[];
     if(existTodo){
        todoList=[...existTodo,{id,task:newTask,complete:false}]
-      localStorage.setItem('todoList',JSON.stringify(todoList));
+      // localStorage.setItem('todoList',JSON.stringify(todoList));
       
     }else{
 
       const todoList={id,task: newTask,complete:false}
       
-    
     }
     
  
@@ -49,30 +43,22 @@ const addTasktoTasks=()=>{
   }else{
     setError(prev=>({...prev,errorTask:"Please enter your Task!"}))
   }
-  
-  
+ 
   setNewTask('')
   
 }
-// console.log(existTodo)
 
 
 
   
 //   // console.log(array)
-useEffect(()=>{
-const storedTasks=JSON.parse(localStorage.getItem("todoList"))
+useEffect(()=>{ 
+const storedTasks=JSON.parse(localStorage.getItem("todoList"))  // getting the previosly stored data for the local storage
 if(storedTasks){
   setTasks(storedTasks);
 }
 // return () => {};
 },[])
-// console.log(list)
-
- 
-
-
-
 
 
 
@@ -101,10 +87,9 @@ const updateTasks=(id)=>{
   }else{
     setError(prev=>({...prev,errorOnEdit:"Please enter the edited task !"}))
     
-  }
-  
-  
+  }  
 }
+  
  const editComplete=(id)=>{
   const newArray = tasks.map((item)=>{
     if(id===item.id){
@@ -117,7 +102,6 @@ const updateTasks=(id)=>{
 
  }
  
-
 
   return(
     <>
